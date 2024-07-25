@@ -12,6 +12,7 @@
             font-family: 'Marquisette BTN Light', sans-serif;
             margin: 0;
             padding: 0;
+            overflow-x: hidden; /* Oculta el desbordamiento horizontal */
         }
         .header {
             display: flex;
@@ -23,6 +24,8 @@
             width: 100%;
             background-color: black;
             z-index: 1000;
+            opacity: 0;
+            transition: opacity 2s ease-in-out, transform 0.3s ease-in-out; /* Transición para ocultar y mostrar el encabezado */
         }
         .logo-title {
             display: flex;
@@ -50,16 +53,22 @@
             flex-direction: column;
             align-items: center;
             margin-top: 150px;
+            opacity: 0;
+            transition: opacity 2s ease-in-out; /* Desvanecimiento del contenido */
+            padding-bottom: 100px; /* Asegura que el contenido no se oculte detrás del pie de página */
         }
         .video-container {
             margin-bottom: 40px;
-            width: 80%;
-            max-width: 800px;
+            width: 80%; /* El contenedor del video ocupa el 80% del ancho del contenedor padre */
+            max-width: 100%;
+            border-radius: 15px; /* Redondea las puntas del video */
+            overflow: hidden; /* Asegura que el video no sobresalga del contenedor redondeado */
         }
         .video-container iframe {
             width: 100%;
             height: auto;
             aspect-ratio: 16 / 9;
+            border-radius: 15px; /* Redondea las puntas del video */
         }
         footer {
             text-align: center;
@@ -71,9 +80,21 @@
             text-decoration: none;
             margin: 0 10px;
         }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            z-index: 999;
+            opacity: 1;
+            transition: opacity 2s ease-in-out; /* Desvanecimiento de la capa de fondo */
+        }
     </style>
 </head>
 <body>
+    <div class="overlay"></div>
     <header class="header">
         <div class="logo-title">
             <img src="logo.png" alt="Logo">
@@ -87,16 +108,16 @@
     </header>
     <div class="container">
         <div class="video-container">
-            <iframe width="1920" height="1080" src="https://www.youtube.com/embed/hORMqcsH9os" title="Entrevista Exclusiva con el Dr. Alfredo Angeloff: Innovaciones en Estética" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/hORMqcsH9os" title="Entrevista Exclusiva con el Dr. Alfredo Angeloff: Innovaciones en Estética" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
         <div class="video-container">
-            <iframe width="1280" height="720" src="https://www.youtube.com/embed/VIDEO_ID_2" title="Video 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" title="Video 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
         <div class="video-container">
-            <iframe width="1280" height="720" src="https://www.youtube.com/embed/VIDEO_ID_3" title="Video 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" title="Video 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
         <div class="video-container">
-            <iframe width="1280" height="720" src="https://www.youtube.com/embed/VIDEO_ID_4" title="Video 4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID_4" title="Video 4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
     </div>
     <footer>
@@ -104,5 +125,42 @@
         <a href="https://instagram.com/oro.producciones" target="_blank">Instagram</a>
         <a href="https://youtube.com/oro.producciones" target="_blank">YouTube</a>
     </footer>
+    <script>
+        window.addEventListener('load', () => {
+            const overlay = document.querySelector('.overlay');
+            const header = document.querySelector('.header');
+            const container = document.querySelector('.container');
+
+            // Desvanecer el fondo
+            setTimeout(() => {
+                overlay.style.opacity = 0;
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                    // Mostrar el encabezado primero
+                    header.style.opacity = 1;
+                    // Luego, mostrar el contenido
+                    setTimeout(() => {
+                        container.style.opacity = 1;
+                    }, 2000); // Tiempo para mostrar el contenido después del encabezado
+                }, 2000); // Tiempo de desvanecimiento del fondo en milisegundos
+            }, 0); // Iniciar el desvanecimiento del fondo inmediatamente
+        });
+
+        let lastScrollTop = 0; // Variable para almacenar la última posición de desplazamiento
+
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (currentScroll > lastScrollTop) {
+                // Desplazamiento hacia abajo
+                header.style.transform = 'translateY(-100%)'; // Oculta el encabezado
+            } else {
+                // Desplazamiento hacia arriba
+                header.style.transform = 'translateY(0)'; // Muestra el encabezado
+            }
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Para evitar valores negativos
+        });
+    </script>
 </body>
 </html>
