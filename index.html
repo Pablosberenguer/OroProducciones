@@ -12,65 +12,50 @@
             font-family: 'Marquisette BTN Light', sans-serif;
             margin: 0;
             padding: 0;
-            overflow-x: hidden; /* Oculta el desbordamiento horizontal */
+            overflow-x: hidden;
         }
         .header {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
             padding: 20px;
             position: fixed;
             top: 0;
             width: 100%;
             background-color: black;
             z-index: 1000;
-            opacity: 0;
-            transition: opacity 2s ease-in-out, transform 0.3s ease-in-out; /* Transición para ocultar y mostrar el encabezado */
         }
         .logo-title {
             display: flex;
             align-items: center;
-            gap: 10px; /* Espacio entre logo y texto */
+            gap: 10px;
         }
         .logo-title img {
             height: 80px;
         }
         .logo-title h1 {
             font-size: 24px;
-            margin: 0; /* Elimina el margen */
-        }
-        .nav {
-            display: flex;
-            gap: 10px;
-            margin-right: 3cm; /* Mueve las pestañas de navegación hacia la izquierda en escritorio */
-        }
-        .nav a {
-            color: white;
-            text-decoration: none;
-            font-size: 16px;
+            margin: 0;
         }
         .container {
             display: flex;
             flex-direction: column;
             align-items: center;
             margin-top: 100px;
-            opacity: 0;
-            transition: opacity 2s ease-in-out; /* Desvanecimiento del contenido */
-            padding-bottom: 100px; /* Asegura que el contenido no se oculte detrás del pie de página */
+            padding-bottom: 100px;
         }
         .video-container {
             margin-bottom: 20px;
-            width: 70%; /* Reduce el tamaño del contenedor del video al 70% */
+            width: 70%;
             max-width: 100%;
-            border-radius: 15px; /* Redondea las puntas del video */
-            overflow: hidden; /* Asegura que el video no sobresalga del contenedor redondeado */
+            border-radius: 15px;
+            overflow: hidden;
         }
         .video-container iframe {
             width: 100%;
             height: auto;
             aspect-ratio: 16 / 9;
-            border-radius: 15px; /* Redondea las puntas del video */
-            cursor: pointer; /* Muestra un cursor de mano al pasar sobre el video */
+            border-radius: 15px;
         }
         footer {
             text-align: center;
@@ -82,36 +67,16 @@
             text-decoration: none;
             margin: 0 10px;
         }
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: black;
-            z-index: 999;
-            opacity: 1;
-            transition: opacity 2s ease-in-out; /* Desvanecimiento de la capa de fondo */
-        }
         @media (max-width: 768px) {
             .header {
                 padding: 10px;
                 flex-direction: column;
-                align-items: flex-start;
             }
             .logo-title img {
                 height: 60px;
             }
             .logo-title h1 {
                 font-size: 20px;
-            }
-            .nav {
-                flex-direction: column;
-                margin-right: 0; /* Mueve las pestañas de navegación a la izquierda en dispositivos móviles */
-                margin-top: 10px;
-            }
-            .nav a {
-                font-size: 14px;
             }
         }
         @media (max-width: 480px) {
@@ -121,117 +86,39 @@
             .logo-title h1 {
                 font-size: 18px;
             }
-            .nav a {
-                font-size: 12px;
-            }
             .video-container {
-                width: 95%; /* Ajusta el ancho del contenedor de video en dispositivos muy pequeños */
+                width: 95%;
             }
         }
     </style>
-    <script>
-        function openFullscreen(elem) {
-            if (elem.requestFullscreen) {
-                elem.requestFullscreen();
-            } else if (elem.mozRequestFullScreen) { /* Firefox */
-                elem.mozRequestFullScreen();
-            } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
-                elem.webkitRequestFullscreen();
-            } else if (elem.msRequestFullscreen) { /* IE/Edge */
-                elem.msRequestFullscreen();
-            }
-        }
-        document.addEventListener('DOMContentLoaded', function() {
-            const iframes = document.querySelectorAll('.video-container iframe');
-            iframes.forEach(iframe => {
-                iframe.addEventListener('click', function() {
-                    // Crear un contenedor para el video en pantalla completa
-                    const fullscreenContainer = document.createElement('div');
-                    fullscreenContainer.style.position = 'fixed';
-                    fullscreenContainer.style.top = '0';
-                    fullscreenContainer.style.left = '0';
-                    fullscreenContainer.style.width = '100%';
-                    fullscreenContainer.style.height = '100%';
-                    fullscreenContainer.style.backgroundColor = 'black';
-                    fullscreenContainer.style.zIndex = '10000';
-                    fullscreenContainer.style.display = 'flex';
-                    fullscreenContainer.style.alignItems = 'center';
-                    fullscreenContainer.style.justifyContent = 'center';
-
-                    // Crear una etiqueta de iframe para el video
-                    const fullscreenIframe = document.createElement('iframe');
-                    fullscreenIframe.src = this.src;
-                    fullscreenIframe.style.width = '80%';
-                    fullscreenIframe.style.height = '80%';
-                    fullscreenIframe.style.border = 'none';
-                    fullscreenIframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-
-                    // Agregar el iframe al contenedor
-                    fullscreenContainer.appendChild(fullscreenIframe);
-
-                    // Agregar el contenedor al cuerpo del documento
-                    document.body.appendChild(fullscreenContainer);
-
-                    // Cerrar el contenedor al hacer clic en cualquier lugar
-                    fullscreenContainer.addEventListener('click', function() {
-                        document.body.removeChild(fullscreenContainer);
-                    });
-                });
-            });
-        });
-    </script>
 </head>
 <body>
-    <div class="overlay"></div>
     <header class="header">
         <div class="logo-title">
             <img src="logo.png" alt="Logo">
             <h1>ORO PRODUCCIONES</h1>
         </div>
-        <nav class="nav">
-            <a href="#contacto">Contacto</a>
-            <a href="#nosotros">Nosotros</a>
-            <a href="#contenido">Contenido</a>
-        </nav>
     </header>
     <div class="container">
         <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/hORMqcsH9os" title="Entrevista Exclusiva con el Dr. Alfredo Angeloff: Innovaciones en Estética" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+            <iframe src="https://www.youtube.com/embed/hORMqcsH9os" title="Entrevista Exclusiva con el Dr. Alfredo Angeloff: Innovaciones en Estética" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
         <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" title="Video 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" title="Video 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
         <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" title="Video 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" title="Video 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
         <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID_4" title="Video 4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
-        </div>
-        <!-- Agregando el widget aquí -->
-        <div class="widget-container">
-            <!-- LightWidget WIDGET --><script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script><iframe src="//lightwidget.com/widgets/46432380f8e65d4c82154a74c2233298.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width:100%;border:0;overflow:hidden;"></iframe>
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID_4" title="Video 4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
     </div>
     <footer>
         <a href="https://facebook.com/pabloberenguer" target="_blank">Facebook</a>
         <a href="https://instagram.com/oro.producciones" target="_blank">Instagram</a>
-        <a href="https://twitter.com/oro_producciones" target="_blank">Twitter</a>
+        <a href="https://youtube.com/oro.producciones" target="_blank">YouTube</a>
     </footer>
-    <script>
-        let lastScrollTop = 0;
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('.header');
-            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-
-            if (currentScroll > lastScrollTop) {
-                // Scroll down
-                header.style.opacity = 0; // Ocultar encabezado
-            } else {
-                // Scroll up
-                header.style.opacity = 1; // Mostrar encabezado
-            }
-            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // For Mobile or negative scrolling
-        });
-    </script>
+</body>
+</html>
 </body>
 </html>
