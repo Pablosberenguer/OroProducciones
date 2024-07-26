@@ -42,7 +42,7 @@
         .nav {
             display: flex;
             gap: 10px;
-            margin-right: 0; /* Mueve las pestañas de navegación a la izquierda en dispositivos móviles */
+            margin-right: 3cm; /* Mueve las pestañas de navegación hacia la izquierda en escritorio */
         }
         .nav a {
             color: white;
@@ -60,7 +60,7 @@
         }
         .video-container {
             margin-bottom: 20px;
-            width: 90%; /* El contenedor del video ocupa el 90% del ancho del contenedor padre */
+            width: 70%; /* Reduce el tamaño del contenedor del video al 70% */
             max-width: 100%;
             border-radius: 15px; /* Redondea las puntas del video */
             overflow: hidden; /* Asegura que el video no sobresalga del contenedor redondeado */
@@ -70,6 +70,7 @@
             height: auto;
             aspect-ratio: 16 / 9;
             border-radius: 15px; /* Redondea las puntas del video */
+            cursor: pointer; /* Muestra un cursor de mano al pasar sobre el video */
         }
         footer {
             text-align: center;
@@ -106,7 +107,7 @@
             }
             .nav {
                 flex-direction: column;
-                margin-right: 0;
+                margin-right: 0; /* Mueve las pestañas de navegación a la izquierda en dispositivos móviles */
                 margin-top: 10px;
             }
             .nav a {
@@ -128,6 +129,57 @@
             }
         }
     </style>
+    <script>
+        function openFullscreen(elem) {
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.mozRequestFullScreen) { /* Firefox */
+                elem.mozRequestFullScreen();
+            } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { /* IE/Edge */
+                elem.msRequestFullscreen();
+            }
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            const iframes = document.querySelectorAll('.video-container iframe');
+            iframes.forEach(iframe => {
+                iframe.addEventListener('click', function() {
+                    // Crear un contenedor para el video en pantalla completa
+                    const fullscreenContainer = document.createElement('div');
+                    fullscreenContainer.style.position = 'fixed';
+                    fullscreenContainer.style.top = '0';
+                    fullscreenContainer.style.left = '0';
+                    fullscreenContainer.style.width = '100%';
+                    fullscreenContainer.style.height = '100%';
+                    fullscreenContainer.style.backgroundColor = 'black';
+                    fullscreenContainer.style.zIndex = '10000';
+                    fullscreenContainer.style.display = 'flex';
+                    fullscreenContainer.style.alignItems = 'center';
+                    fullscreenContainer.style.justifyContent = 'center';
+
+                    // Crear una etiqueta de iframe para el video
+                    const fullscreenIframe = document.createElement('iframe');
+                    fullscreenIframe.src = this.src;
+                    fullscreenIframe.style.width = '80%';
+                    fullscreenIframe.style.height = '80%';
+                    fullscreenIframe.style.border = 'none';
+                    fullscreenIframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+
+                    // Agregar el iframe al contenedor
+                    fullscreenContainer.appendChild(fullscreenIframe);
+
+                    // Agregar el contenedor al cuerpo del documento
+                    document.body.appendChild(fullscreenContainer);
+
+                    // Cerrar el contenedor al hacer clic en cualquier lugar
+                    fullscreenContainer.addEventListener('click', function() {
+                        document.body.removeChild(fullscreenContainer);
+                    });
+                });
+            });
+        });
+    </script>
 </head>
 <body>
     <div class="overlay"></div>
@@ -144,16 +196,16 @@
     </header>
     <div class="container">
         <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/hORMqcsH9os" title="Entrevista Exclusiva con el Dr. Alfredo Angeloff: Innovaciones en Estética" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/hORMqcsH9os" title="Entrevista Exclusiva con el Dr. Alfredo Angeloff: Innovaciones en Estética" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
         </div>
         <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" title="Video 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" title="Video 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
         </div>
         <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" title="Video 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" title="Video 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
         </div>
         <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID_4" title="Video 4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID_4" title="Video 4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
         </div>
         <!-- Agregando el widget aquí -->
         <div class="widget-container">
@@ -163,46 +215,23 @@
     <footer>
         <a href="https://facebook.com/pabloberenguer" target="_blank">Facebook</a>
         <a href="https://instagram.com/oro.producciones" target="_blank">Instagram</a>
-        <a href="https://youtube.com/oro.producciones" target="_blank">YouTube</a>
+        <a href="https://twitter.com/oro_producciones" target="_blank">Twitter</a>
     </footer>
     <script>
-        window.addEventListener('load', () => {
-            const overlay = document.querySelector('.overlay');
-            const header = document.querySelector('.header');
-            const container = document.querySelector('.container');
-
-            // Desvanecer el fondo
-            setTimeout(() => {
-                overlay.style.opacity = 0;
-                setTimeout(() => {
-                    overlay.style.display = 'none';
-                    // Mostrar el encabezado primero
-                    header.style.opacity = 1;
-                    // Luego, mostrar el contenido
-                    setTimeout(() => {
-                        container.style.opacity = 1;
-                    }, 2000); // Tiempo para mostrar el contenido después del encabezado
-                }, 2000); // Tiempo de desvanecimiento del fondo en milisegundos
-            }, 0); // Iniciar el desvanecimiento del fondo inmediatamente
-        });
-
-        let lastScrollTop = 0; // Variable para almacenar la última posición de desplazamiento
-
+        let lastScrollTop = 0;
         window.addEventListener('scroll', () => {
             const header = document.querySelector('.header');
             const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
 
             if (currentScroll > lastScrollTop) {
-                // Desplazamiento hacia abajo
-                header.style.transform = 'translateY(-100%)'; // Oculta el encabezado
+                // Scroll down
+                header.style.opacity = 0; // Ocultar encabezado
             } else {
-                // Desplazamiento hacia arriba
-                header.style.transform = 'translateY(0)'; // Muestra el encabezado
+                // Scroll up
+                header.style.opacity = 1; // Mostrar encabezado
             }
-            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Para evitar valores negativos
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // For Mobile or negative scrolling
         });
     </script>
-</body>
-</html>
 </body>
 </html>
