@@ -127,13 +127,6 @@
                 width: 95%; /* Ajusta el ancho del contenedor de video en dispositivos muy pequeños */
             }
         }
-        /* Media query para ajustar el tamaño del widget en pantallas grandes */
-        @media (min-width: 769px) {
-            .lightwidget-widget {
-                transform: scale(0.8); /* Escala el widget al 80% de su tamaño original */
-                transform-origin: top center; /* Asegura que la escala se aplique desde el centro superior */
-            }
-        }
     </style>
 </head>
 <body>
@@ -162,9 +155,10 @@
         <div class="video-container">
             <iframe src="https://www.youtube.com/embed/VIDEO_ID_4" title="Video 4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
-        <!-- LightWidget WIDGET -->
-        <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script>
-        <iframe src="https://cdn.lightwidget.com/widgets/5cb7f3e0dea758179004b34bef63c113.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width:100%;border:0;overflow:hidden;"></iframe>
+        <!-- Agregando el widget aquí -->
+        <div class="widget-container">
+            <!-- LightWidget WIDGET --><script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script><iframe src="//lightwidget.com/widgets/46432380f8e65d4c82154a74c2233298.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width:100%;border:0;overflow:hidden;"></iframe>
+        </div>
     </div>
     <footer>
         <a href="https://facebook.com/pabloberenguer" target="_blank">Facebook</a>
