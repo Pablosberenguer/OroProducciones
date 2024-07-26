@@ -42,7 +42,7 @@
         .nav {
             display: flex;
             gap: 10px;
-            margin-right: 2cm; /* Ajusta el margen derecho en dispositivos grandes */
+            margin-right: 2cm; /* Mueve las pestañas de navegación a la izquierda */
         }
         .nav a {
             color: white;
@@ -59,18 +59,17 @@
             padding-bottom: 100px; /* Asegura que el contenido no se oculte detrás del pie de página */
         }
         .video-container {
-            margin-top: 1cm; /* Espacio de 1 cm arriba del contenedor del video */
             margin-bottom: 20px;
-            width: 70%; /* El contenedor del video ocupa el 70% del ancho del contenedor padre */
-            max-width: 100%;
-            border-radius: 15px; /* Redondea las puntas del video */
+            width: 90%; /* El contenedor del video ocupa el 90% del ancho del contenedor padre */
+            max-width: 70%;
+            border-radius: 20px; /* Redondea las puntas del video */
             overflow: hidden; /* Asegura que el video no sobresalga del contenedor redondeado */
         }
         .video-container iframe {
             width: 100%;
             height: auto;
             aspect-ratio: 16 / 9;
-            border-radius: 15px; /* Redondea las puntas del video */
+            border-radius: 20px; /* Redondea las puntas del video */
         }
         footer {
             text-align: center;
@@ -128,6 +127,19 @@
                 width: 95%; /* Ajusta el ancho del contenedor de video en dispositivos muy pequeños */
             }
         }
+        .widget-container {
+            width: 90%;
+            max-width: 800px; /* Ajusta el tamaño máximo del widget */
+            margin: 20px auto;
+            border-radius: 25px; /* Redondea más las puntas del widget */
+            overflow: hidden; /* Asegura que el widget no sobresalga del contenedor redondeado */
+        }
+        .lightwidget-widget {
+            width: 100%;
+            border: 0;
+            overflow: hidden;
+            height: 500px; /* Ajusta la altura del widget */
+        }
     </style>
 </head>
 <body>
@@ -144,6 +156,11 @@
         </nav>
     </header>
     <div class="container">
+        <div class="widget-container">
+            <!-- LightWidget WIDGET -->
+            <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script>
+            <iframe src="https://cdn.lightwidget.com/widgets/46432380f8e65d4c82154a74c2233298.html" scrolling="no" allowtransparency="true" class="lightwidget-widget"></iframe>
+        </div>
         <div class="video-container">
             <iframe src="https://www.youtube.com/embed/hORMqcsH9os" title="Entrevista Exclusiva con el Dr. Alfredo Angeloff: Innovaciones en Estética" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
@@ -200,5 +217,6 @@
         });
     </script>
 </body>
+</html>
 </html>
 
