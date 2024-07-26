@@ -27,15 +27,15 @@
             opacity: 0;
             transition: opacity 2s ease-in-out, transform 0.3s ease-in-out; /* Transición para ocultar y mostrar el encabezado */
         }
-        .logo.png {
+        .logo-title {
             display: flex;
             align-items: center;
             gap: 10px; /* Espacio entre logo y texto */
         }
-        .logo.png img {
-            height: 40px;
+        .logo-title img {
+            height: 80px;
         }
-        .logo.png h1 {
+        .logo-title h1 {
             font-size: 24px;
             margin: 0; /* Elimina el margen */
         }
@@ -70,6 +70,16 @@
             height: auto;
             aspect-ratio: 16 / 9;
             border-radius: 15px; /* Redondea las puntas del video */
+        }
+        .ig-widget-container {
+            width: 100%;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .ig-widget-container iframe {
+            width: 100%;
+            height: 500px; /* Ajusta la altura del widget según sea necesario */
+            border: none;
         }
         footer {
             text-align: center;
@@ -143,6 +153,12 @@
         </nav>
     </header>
     <div class="container">
+        <!-- Carrusel de historias de Instagram -->
+        <div class="ig-widget-container">
+            <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script>
+            <iframe src="//lightwidget.com/widgets/5cb7f3e0dea758179004b34bef63c113.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width:100%;border:0;overflow:hidden;"></iframe>
+        </div>
+
         <div class="video-container">
             <iframe src="https://www.youtube.com/embed/hORMqcsH9os" title="Entrevista Exclusiva con el Dr. Alfredo Angeloff: Innovaciones en Estética" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
