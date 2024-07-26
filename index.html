@@ -130,7 +130,8 @@
         /* Media query para ajustar el tamaño del widget en pantallas grandes */
         @media (min-width: 769px) {
             .lightwidget-widget {
-                height: 480px; /* Ajusta la altura del widget en pantallas grandes */
+                transform: scale(0.8); /* Escala el widget al 80% de su tamaño original */
+                transform-origin: top center; /* Asegura que la escala se aplique desde el centro superior */
             }
         }
     </style>
@@ -207,5 +208,7 @@
             lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Para evitar valores negativos
         });
     </script>
+</body>
+</html>
 </body>
 </html>
