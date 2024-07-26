@@ -156,7 +156,7 @@
         <!-- Carrusel de historias de Instagram -->
         <div class="ig-widget-container">
             <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script>
-            <iframe src="//lightwidget.com/widgets/5cb7f3e0dea758179004b34bef63c113.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width:100%;border:0;overflow:hidden;"></iframe>
+            <iframe src="https://lightwidget.com/widgets/5cb7f3e0dea758179004b34bef63c113.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width:100%;border:0;overflow:hidden;"></iframe>
         </div>
 
         <div class="video-container">
@@ -173,45 +173,24 @@
         </div>
     </div>
     <footer>
-        <a href="https://facebook.com/pabloberenguer" target="_blank">Facebook</a>
-        <a href="https://instagram.com/oro.producciones" target="_blank">Instagram</a>
-        <a href="https://youtube.com/oro.producciones" target="_blank">YouTube</a>
+        <p>Síguenos en nuestras redes sociales:</p>
+        <a href="https://www.facebook.com/oro.producciones" target="_blank">Facebook</a>
+        <a href="https://www.instagram.com/oro.producciones" target="_blank">Instagram</a>
+        <a href="https://www.twitter.com/oro_producciones" target="_blank">Twitter</a>
     </footer>
     <script>
-        window.addEventListener('load', () => {
-            const overlay = document.querySelector('.overlay');
-            const header = document.querySelector('.header');
-            const container = document.querySelector('.container');
-
-            // Desvanecer el fondo
+        document.addEventListener("DOMContentLoaded", function() {
+            const overlay = document.querySelector(".overlay");
+            const header = document.querySelector(".header");
+            const container = document.querySelector(".container");
             setTimeout(() => {
                 overlay.style.opacity = 0;
-                setTimeout(() => {
-                    overlay.style.display = 'none';
-                    // Mostrar el encabezado primero
-                    header.style.opacity = 1;
-                    // Luego, mostrar el contenido
-                    setTimeout(() => {
-                        container.style.opacity = 1;
-                    }, 2000); // Tiempo para mostrar el contenido después del encabezado
-                }, 2000); // Tiempo de desvanecimiento del fondo en milisegundos
-            }, 0); // Iniciar el desvanecimiento del fondo inmediatamente
-        });
-
-        let lastScrollTop = 0; // Variable para almacenar la última posición de desplazamiento
-
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('.header');
-            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-
-            if (currentScroll > lastScrollTop) {
-                // Desplazamiento hacia abajo
-                header.style.transform = 'translateY(-100%)'; // Oculta el encabezado
-            } else {
-                // Desplazamiento hacia arriba
-                header.style.transform = 'translateY(0)'; // Muestra el encabezado
-            }
-            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Para evitar valores negativos
+                header.style.opacity = 1;
+                container.style.opacity = 1;
+            }, 2000);
+            setTimeout(() => {
+                overlay.style.display = "none";
+            }, 4000);
         });
     </script>
 </body>
