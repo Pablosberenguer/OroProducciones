@@ -12,7 +12,7 @@
             font-family: 'Marquisette BTN Light', sans-serif;
             margin: 0;
             padding: 0;
-            overflow-x: hidden; /* Oculta el desbordamiento horizontal */
+            overflow-x: hidden;
         }
         .header {
             display: flex;
@@ -25,24 +25,24 @@
             background-color: black;
             z-index: 1000;
             opacity: 0;
-            transition: opacity 2s ease-in-out, transform 0.3s ease-in-out; /* Transición para ocultar y mostrar el encabezado */
+            transition: opacity 2s ease-in-out, transform 0.3s ease-in-out;
         }
         .logo-title {
             display: flex;
             align-items: center;
-            gap: 10px; /* Espacio entre logo y texto */
+            gap: 10px;
         }
         .logo-title img {
             height: 80px;
         }
         .logo-title h1 {
             font-size: 24px;
-            margin: 0; /* Elimina el margen */
+            margin: 0;
         }
         .nav {
             display: flex;
             gap: 10px;
-            margin-right: 2cm; /* Mueve las pestañas de navegación a la izquierda */
+            margin-right: 2cm;
         }
         .nav a {
             color: white;
@@ -53,23 +53,23 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 100px;
+            margin-top: 150px;
             opacity: 0;
-            transition: opacity 2s ease-in-out; /* Desvanecimiento del contenido */
-            padding-bottom: 100px; /* Asegura que el contenido no se oculte detrás del pie de página */
+            transition: opacity 2s ease-in-out;
+            padding-bottom: 100px;
         }
         .video-container {
             margin-bottom: 20px;
-            width: 90%; /* El contenedor del video ocupa el 90% del ancho del contenedor padre */
-            max-width: 70%;
-            border-radius: 20px; /* Redondea las puntas del video */
-            overflow: hidden; /* Asegura que el video no sobresalga del contenedor redondeado */
+            width: 70%;
+            max-width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
         }
         .video-container iframe {
             width: 100%;
             height: auto;
             aspect-ratio: 16 / 9;
-            border-radius: 20px; /* Redondea las puntas del video */
+            border-radius: 20px;
         }
         footer {
             text-align: center;
@@ -90,7 +90,7 @@
             background-color: black;
             z-index: 999;
             opacity: 1;
-            transition: opacity 2s ease-in-out; /* Desvanecimiento de la capa de fondo */
+            transition: opacity 2s ease-in-out;
         }
         @media (max-width: 768px) {
             .header {
@@ -124,21 +124,8 @@
                 font-size: 12px;
             }
             .video-container {
-                width: 95%; /* Ajusta el ancho del contenedor de video en dispositivos muy pequeños */
+                width: 95%;
             }
-        }
-        .widget-container {
-            width: 90%;
-            max-width: 800px; /* Ajusta el tamaño máximo del widget */
-            margin: 20px auto;
-            border-radius: 25px; /* Redondea más las puntas del widget */
-            overflow: hidden; /* Asegura que el widget no sobresalga del contenedor redondeado */
-        }
-        .lightwidget-widget {
-            width: 100%;
-            border: 0;
-            overflow: hidden;
-            height: 500px; /* Ajusta la altura del widget */
         }
     </style>
 </head>
@@ -156,22 +143,16 @@
         </nav>
     </header>
     <div class="container">
-        <div class="widget-container">
-            <!-- LightWidget WIDGET -->
-            <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script>
-            <iframe src="https://cdn.lightwidget.com/widgets/46432380f8e65d4c82154a74c2233298.html" scrolling="no" allowtransparency="true" class="lightwidget-widget"></iframe>
+        <div class="video-container">
+            <iframe width="1280" height="720" src="https://www.youtube.com/embed/1t0mWq8ZFcI" title="MARIE CLAIRE - LOS DESAFIO DE LA SUSTENTABILIDAD" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
         <div class="video-container">
             <iframe src="https://www.youtube.com/embed/hORMqcsH9os" title="Entrevista Exclusiva con el Dr. Alfredo Angeloff: Innovaciones en Estética" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
         <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" title="Video 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-        <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" title="Video 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-        <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID_4" title="Video 4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <!-- LightWidget WIDGET -->
+            <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script>
+            <iframe src="https://cdn.lightwidget.com/widgets/46432380f8e65d4c82154a74c2233298.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width:100%;border:0;overflow:hidden; border-radius: 20px;"></iframe>
         </div>
     </div>
     <footer>
@@ -185,38 +166,32 @@
             const header = document.querySelector('.header');
             const container = document.querySelector('.container');
 
-            // Desvanecer el fondo
             setTimeout(() => {
                 overlay.style.opacity = 0;
                 setTimeout(() => {
                     overlay.style.display = 'none';
-                    // Mostrar el encabezado primero
                     header.style.opacity = 1;
-                    // Luego, mostrar el contenido
                     setTimeout(() => {
                         container.style.opacity = 1;
-                    }, 2000); // Tiempo para mostrar el contenido después del encabezado
-                }, 2000); // Tiempo de desvanecimiento del fondo en milisegundos
-            }, 0); // Iniciar el desvanecimiento del fondo inmediatamente
+                    }, 2000);
+                }, 2000);
+            }, 0);
         });
 
-        let lastScrollTop = 0; // Variable para almacenar la última posición de desplazamiento
+        let lastScrollTop = 0;
 
         window.addEventListener('scroll', () => {
             const header = document.querySelector('.header');
             const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
 
             if (currentScroll > lastScrollTop) {
-                // Desplazamiento hacia abajo
-                header.style.transform = 'translateY(-100%)'; // Oculta el encabezado
+                header.style.transform = 'translateY(-100%)';
             } else {
-                // Desplazamiento hacia arriba
-                header.style.transform = 'translateY(0)'; // Muestra el encabezado
+                header.style.transform = 'translateY(0)';
             }
-            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Para evitar valores negativos
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
         });
     </script>
 </body>
-</html>
 </html>
 
