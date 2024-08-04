@@ -65,10 +65,9 @@
             border-radius: 20px;
             overflow: hidden;
         }
-        .video-container iframe {
+        .video-container video {
             width: 100%;
             height: auto;
-            aspect-ratio: 16 / 9;
             border-radius: 20px;
         }
         footer {
@@ -145,9 +144,14 @@
     <div class="container" id="contenido">
         <h2>Contenido</h2>
         <div class="video-container" id="videos">
+            <video controls>
+                <source src="PEILLAT.mp4" type="video/mp4">
+                Tu navegador no soporta la reproducción de videos.
+            </video>
+        </div>
+        <div class="video-container">
             <iframe width="1280" height="720" src="https://www.youtube.com/embed/1t0mWq8ZFcI" title="MARIE CLAIRE - LOS DESAFIO DE LA SUSTENTABILIDAD" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
-        <!-- Añadir más videos aquí -->
         <div class="video-container">
             <iframe src="https://www.youtube.com/embed/hORMqcsH9os" title="Entrevista Exclusiva con el Dr. Alfredo Angeloff: Innovaciones en Estética" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
