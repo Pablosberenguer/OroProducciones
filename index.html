@@ -43,11 +43,24 @@
             display: flex;
             gap: 10px;
             margin-right: 2cm;
+            position: relative;
         }
         .nav a {
             color: white;
             text-decoration: none;
             font-size: 16px;
+        }
+        .nav .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            display: none;
+            flex-direction: column;
+            background-color: black;
+            border: 1px solid white;
+        }
+        .nav .dropdown a {
+            padding: 10px;
         }
         .container {
             display: flex;
@@ -138,17 +151,14 @@
         <nav class="nav">
             <a href="#contacto">Contacto</a>
             <a href="#nosotros">Nosotros</a>
-            <a href="#contenido">Contenido</a>
+            <a href="#contenido" id="contenido-link">Contenido</a>
+            <div class="dropdown" id="contenido-dropdown">
+                <a href="#" id="video-link">Videos</a>
+            </div>
         </nav>
     </header>
     <div class="container" id="contenido">
         <h2>Contenido</h2>
-        <div class="video-container" id="videos">
-            <video controls>
-                <source src="PEILLAT.mp4" type="video/mp4">
-                Tu navegador no soporta la reproducción de videos.
-            </video>
-        </div>
         <div class="video-container">
             <iframe width="1280" height="720" src="https://www.youtube.com/embed/1t0mWq8ZFcI" title="MARIE CLAIRE - LOS DESAFIO DE LA SUSTENTABILIDAD" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
@@ -166,6 +176,9 @@
             const overlay = document.querySelector('.overlay');
             const header = document.querySelector('.header');
             const container = document.querySelector('.container');
+            const contenidoLink = document.getElementById('contenido-link');
+            const contenidoDropdown = document.getElementById('contenido-dropdown');
+            const videoLink = document.getElementById('video-link');
 
             setTimeout(() => {
                 overlay.style.opacity = 0;
@@ -177,6 +190,31 @@
                     }, 2000);
                 }, 2000);
             }, 0);
+
+            contenidoLink.addEventListener('mouseover', () => {
+                contenidoDropdown.style.display = 'flex';
+            });
+
+            contenidoLink.addEventListener('mouseout', () => {
+                setTimeout(() => {
+                    if (!contenidoDropdown.matches(':hover')) {
+                        contenidoDropdown.style.display = 'none';
+                    }
+                }, 300);
+            });
+
+            contenidoDropdown.addEventListener('mouseover', () => {
+                contenidoDropdown.style.display = 'flex';
+            });
+
+            contenidoDropdown.addEventListener('mouseout', () => {
+                contenidoDropdown.style.display = 'none';
+            });
+
+            videoLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.open('video.html', '_blank', 'width=800,height=600');
+            });
         });
 
         let lastScrollTop = 0;
@@ -195,6 +233,7 @@
     </script>
 </body>
 </html>
+
 
 
 </html>
