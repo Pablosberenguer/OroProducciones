@@ -102,6 +102,128 @@
             height: 100%;
             background-color: black;
             z-index: 999;
+            opacity: 1;<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORO PRODUCCIONES</title>
+    <meta name="description" content="ORO PRODUCCIONES - Productora de contenidos audiovisuales innovadores y de alta calidad.">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marquisette+BTN+Light&display=swap">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: 'Marquisette BTN Light', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: black;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 2s ease-in-out, transform 0.3s ease-in-out;
+        }
+        .logo-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo-title img {
+            height: 80px;
+        }
+        .logo-title h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+        .nav {
+            display: flex;
+            gap: 10px;
+            margin-right: 2cm;
+            position: relative;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .nav .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            display: none;
+            flex-direction: column;
+            background-color: black;
+            border: 1px solid white;
+        }
+        .nav .dropdown a {
+            padding: 10px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 150px;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+            padding-bottom: 100px;
+        }
+        .video-banner {
+            width: 100%;
+            max-width: 1280px;
+            height: 400px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+        .video-banner iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 10000;
+            background-color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .fullscreen iframe {
+            width: 100%;
+            height: 100%;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: black;
+        }
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            z-index: 999;
             opacity: 1;
             transition: opacity 2s ease-in-out;
         }
@@ -136,8 +258,8 @@
             .nav a {
                 font-size: 12px;
             }
-            .video-container {
-                width: 95%;
+            .video-banner {
+                height: 200px;
             }
         }
     </style>
@@ -160,11 +282,11 @@
     </header>
     <div class="container" id="contenido">
         <h2>Contenido</h2>
-        <div class="video-container">
-            <iframe width="1280" height="720" src="https://www.youtube.com/embed/1t0mWq8ZFcI" title="MARIE CLAIRE - LOS DESAFIO DE LA SUSTENTABILIDAD" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="video-banner" onclick="expandToFullscreen(this)">
+            <iframe src="https://www.youtube.com/embed/1t0mWq8ZFcI" title="MARIE CLAIRE - LOS DESAFIO DE LA SUSTENTABILIDAD" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
-        <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/hORMqcsH9os" title="Entrevista Exclusiva con el Dr. Alfredo Angeloff: Innovaciones en Estética" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="video-banner" onclick="expandToFullscreen(this)">
+            <iframe src="https://www.youtube.com/embed/hORMqcsH9os" title="Entrevista Exclusiva con el Dr. Alfredo Angeloff: Innovaciones en Estética" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
     </div>
     <footer>
@@ -177,9 +299,6 @@
             const overlay = document.querySelector('.overlay');
             const header = document.querySelector('.header');
             const container = document.querySelector('.container');
-            const contenidoLink = document.getElementById('contenido-link');
-            const contenidoDropdown = document.getElementById('contenido-dropdown');
-            const videoLink = document.getElementById('video-link');
 
             setTimeout(() => {
                 overlay.style.opacity = 0;
@@ -191,31 +310,6 @@
                     }, 2000);
                 }, 2000);
             }, 0);
-
-            contenidoLink.addEventListener('mouseover', () => {
-                contenidoDropdown.style.display = 'flex';
-            });
-
-            contenidoLink.addEventListener('mouseout', () => {
-                setTimeout(() => {
-                    if (!contenidoDropdown.matches(':hover')) {
-                        contenidoDropdown.style.display = 'none';
-                    }
-                }, 300);
-            });
-
-            contenidoDropdown.addEventListener('mouseover', () => {
-                contenidoDropdown.style.display = 'flex';
-            });
-
-            contenidoDropdown.addEventListener('mouseout', () => {
-                contenidoDropdown.style.display = 'none';
-            });
-
-            videoLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                window.open('video.html', '_blank', 'width=800,height=600');
-            });
         });
 
         let lastScrollTop = 0;
@@ -231,8 +325,24 @@
             }
             lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
         });
+
+        function expandToFullscreen(element) {
+            const iframe = element.querySelector('iframe');
+            const fullscreenContainer = document.createElement('div');
+            fullscreenContainer.classList.add('fullscreen');
+            fullscreenContainer.appendChild(iframe);
+
+            document.body.appendChild(fullscreenContainer);
+
+            fullscreenContainer.addEventListener('click', () => {
+                fullscreenContainer.style.display = 'none';
+                document.body.removeChild(fullscreenContainer);
+                element.appendChild(iframe);
+            });
+        }
     </script>
 </body>
 </html>
+
 
 
