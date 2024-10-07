@@ -76,14 +76,13 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
-            width: 90%; /* Ajustar el ancho al 90% de la página */
-            margin: 0 auto; /* Centrando el contenedor */
+            width: 90%;
+            margin: 0 auto;
         }
         .video-item {
             position: relative;
-            cursor: pointer;
             overflow: hidden;
-            padding-bottom: 56.25%; /* Mantener la relación de aspecto 16:9 */
+            padding-bottom: 56.25%;
         }
         .video-item iframe {
             position: absolute;
@@ -136,27 +135,27 @@
         <h2>Contenido</h2>
         <div class="video-grid">
             <!-- Video 1 -->
-            <div class="video-item" data-url="https://www.youtube.com/embed/a9frnKhmZz8">
+            <div class="video-item">
                 <iframe src="https://www.youtube.com/embed/a9frnKhmZz8" title="Video 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
             <!-- Video 2 -->
-            <div class="video-item" data-url="https://www.youtube.com/embed/i4MOwP7fLg8">
+            <div class="video-item">
                 <iframe src="https://www.youtube.com/embed/i4MOwP7fLg8" title="Video 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
             <!-- Video 3 -->
-            <div class="video-item" data-url="https://www.youtube.com/embed/sYo7hAP4-Ms">
+            <div class="video-item">
                 <iframe src="https://www.youtube.com/embed/sYo7hAP4-Ms" title="Video 3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
             <!-- Video 4 -->
-            <div class="video-item" data-url="https://www.youtube.com/embed/hORMqcsH9os">
+            <div class="video-item">
                 <iframe src="https://www.youtube.com/embed/hORMqcsH9os" title="Entrevista Exclusiva con el Dr. Alfredo Angeloff: Innovaciones en Estética" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
             <!-- Video 5 -->
-            <div class="video-item" data-url="https://www.youtube.com/embed/1t0mWq8ZFcI">
+            <div class="video-item">
                 <iframe src="https://www.youtube.com/embed/1t0mWq8ZFcI" title="MARIE CLAIRE - LOS DESAFIO DE LA SUSTENTABILIDAD" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
             <!-- Video 6 -->
-            <div class="video-item" data-url="https://www.youtube.com/embed/RBIs37Gn8B0">
+            <div class="video-item">
                 <iframe src="https://www.youtube.com/embed/RBIs37Gn8B0" title="Nuevo Video de ORO PRODUCCIONES" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
         </div>
@@ -180,7 +179,8 @@
 
             videoItems.forEach(item => {
                 item.addEventListener('click', () => {
-                    const url = item.getAttribute('data-url');
+                    const iframe = item.querySelector('iframe');
+                    const url = iframe.src;
                     fullscreenIframe.src = url;
                     fullscreenVideo.style.display = 'block';
                 });
@@ -194,6 +194,7 @@
     </script>
 </body>
 </html>
+
 
 
 </html>
