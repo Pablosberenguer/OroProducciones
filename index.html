@@ -64,39 +64,48 @@
             padding: 10px;
         }
         .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 150px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 150px auto;
+            max-width: 1200px;
             opacity: 0;
             transition: opacity 2s ease-in-out;
             padding-bottom: 100px;
         }
-        .carousel-wrapper {
-            position: relative;
-            overflow: hidden;
-            width: 100%;
-            max-width: 1200px; /* Ajustar según el diseño deseado */
-            margin: 0 auto; /* Centrar el carrusel */
-        }
-        .carousel {
-            display: flex;
-            flex-wrap: nowrap;
-            transition: transform 5s ease-in-out; /* Transición suave */
-        }
         .video-banner {
-            flex: 0 0 auto;
-            height: 400px; /* Ajusta según el tamaño deseado */
-            width: 600px; /* Ajusta según el tamaño deseado */
-            margin-right: 5cm; /* Separación de 5 cm entre videos */
-            overflow: hidden;
             position: relative;
             cursor: pointer;
+            overflow: hidden;
         }
         .video-banner iframe {
             width: 100%;
-            height: 100%;
+            height: 200px;
             border: none;
+        }
+        .fullscreen-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+        }
+        .fullscreen-video iframe {
+            width: 80%;
+            height: 80%;
+        }
+        .close-fullscreen {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
         }
         footer {
             text-align: center;
@@ -107,53 +116,6 @@
             color: white;
             text-decoration: none;
             margin: 0 10px;
-        }
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: black;
-            z-index: 999;
-            opacity: 1;
-            transition: opacity 2s ease-in-out;
-        }
-        @media (max-width: 768px) {
-            .header {
-                padding: 10px;
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .logo-title img {
-                height: 60px;
-            }
-            .logo-title h1 {
-                font-size: 20px;
-            }
-            .nav {
-                flex-direction: column;
-                margin-right: 0;
-                margin-top: 10px;
-            }
-            .nav a {
-                font-size: 14px;
-            }
-        }
-        @media (max-width: 480px) {
-            .logo-title img {
-                height: 50px;
-            }
-            .logo-title h1 {
-                font-size: 18px;
-            }
-            .nav a {
-                font-size: 12px;
-            }
-            .video-banner {
-                height: 250px;
-                width: 400px; /* Ajusta según el tamaño deseado */
-            }
         }
     </style>
 </head>
@@ -168,112 +130,73 @@
             <a href="#contacto">Contacto</a>
             <a href="#nosotros">Nosotros</a>
             <a href="#contenido" id="contenido-link">Contenido</a>
-            <div class="dropdown" id="contenido-dropdown">
-                <a href="#" id="video-link">Videos</a>
-            </div>
         </nav>
     </header>
+
     <div class="container" id="contenido">
-        <h2>Contenido</h2>
-        <div class="carousel-wrapper">
-            <div class="carousel">
-                <div class="video-banner" data-url="https://www.youtube.com/embed/1t0mWq8ZFcI">
-                    <iframe src="https://www.youtube.com/embed/1t0mWq8ZFcI" title="MARIE CLAIRE - LOS DESAFIO DE LA SUSTENTABILIDAD" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                </div>
-                <div class="video-banner" data-url="https://www.youtube.com/embed/hORMqcsH9os">
-                    <iframe src="https://www.youtube.com/embed/hORMqcsH9os" title="Entrevista Exclusiva con el Dr. Alfredo Angeloff: Innovaciones en Estética" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                </div>
-                <div class="video-banner" data-url="https://www.youtube.com/embed/RBIs37Gn8B0">
-                    <iframe src="https://www.youtube.com/embed/RBIs37Gn8B0" title="Nuevo Video de ORO PRODUCCIONES" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                </div>
-                <!-- Duplicar contenido para el efecto infinito -->
-                <div class="video-banner" data-url="https://www.youtube.com/embed/1t0mWq8ZFcI">
-                    <iframe src="https://www.youtube.com/embed/1t0mWq8ZFcI" title="MARIE CLAIRE - LOS DESAFIO DE LA SUSTENTABILIDAD" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                </div>
-                <div class="video-banner" data-url="https://www.youtube.com/embed/hORMqcsH9os">
-                    <iframe src="https://www.youtube.com/embed/hORMqcsH9os" title="Entrevista Exclusiva con el Dr. Alfredo Angeloff: Innovaciones en Estética" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                </div>
-                <div class="video-banner" data-url="https://www.youtube.com/embed/RBIs37Gn8B0">
-                    <iframe src="https://www.youtube.com/embed/RBIs37Gn8B0" title="Nuevo Video de ORO PRODUCCIONES" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                </div>
-            </div>
+        <!-- Agregar nuevos videos aquí -->
+        <div class="video-banner" data-url="https://www.youtube.com/embed/a9frnKhmZz8">
+            <iframe src="https://www.youtube.com/embed/a9frnKhmZz8" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <div class="video-banner" data-url="https://www.youtube.com/embed/i4MOwP7fLg8">
+            <iframe src="https://www.youtube.com/embed/i4MOwP7fLg8" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        
+        <!-- Videos existentes -->
+        <div class="video-banner" data-url="https://www.youtube.com/embed/1t0mWq8ZFcI">
+            <iframe src="https://www.youtube.com/embed/1t0mWq8ZFcI" title="MARIE CLAIRE - LOS DESAFIO DE LA SUSTENTABILIDAD" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <div class="video-banner" data-url="https://www.youtube.com/embed/hORMqcsH9os">
+            <iframe src="https://www.youtube.com/embed/hORMqcsH9os" title="Entrevista Exclusiva con el Dr. Alfredo Angeloff: Innovaciones en Estética" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <div class="video-banner" data-url="https://www.youtube.com/embed/RBIs37Gn8B0">
+            <iframe src="https://www.youtube.com/embed/RBIs37Gn8B0" title="Nuevo Video de ORO PRODUCCIONES" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
     </div>
+
     <footer>
         <a href="https://www.facebook.com/berenguerpablo" target="_blank">Facebook</a>
         <a href="https://instagram.com/oro.producciones" target="_blank">Instagram</a>
         <a href="https://www.youtube.com/@oro.producciones.audiovisuales" target="_blank">YouTube</a>
     </footer>
+
+    <div class="fullscreen-video" id="fullscreen-video" style="display: none;">
+        <div class="close-fullscreen" id="close-fullscreen">✖</div>
+        <iframe id="fullscreen-iframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            const container = document.querySelector('.container');
             const overlay = document.querySelector('.overlay');
             const header = document.querySelector('.header');
-            const container = document.querySelector('.container');
-            
+            const fullscreen = document.getElementById('fullscreen-video');
+            const fullscreenIframe = document.getElementById('fullscreen-iframe');
+            const closeFullscreen = document.getElementById('close-fullscreen');
+
             setTimeout(() => {
                 overlay.style.opacity = '0';
                 setTimeout(() => {
                     overlay.style.display = 'none';
                     header.style.opacity = '1';
                     container.style.opacity = '1';
-                }, 2000); // Tiempo de transición de desvanecimiento
-            }, 2000); // Tiempo de espera antes del desvanecimiento
-
-            const carousel = document.querySelector('.carousel');
-            const items = document.querySelectorAll('.video-banner');
-            const itemWidth = items[0].offsetWidth + 50; // Incluye la separación de 5 cm
-            const totalWidth = itemWidth * items.length;
-            let scrollPosition = 0;
-
-            // Esperar a que todos los elementos estén cargados
-            setTimeout(() => {
-                let transitionDuration = 5; // Duración en segundos
-
-                function scrollCarousel() {
-                    carousel.style.transition = `transform ${transitionDuration}s ease-in-out`;
-                    scrollPosition += itemWidth;
-                    if (scrollPosition >= totalWidth / 2) { // Ajustar para el tamaño duplicado
-                        scrollPosition = 0;
-                    }
-                    carousel.style.transform = `translateX(-${scrollPosition}px)`;
-                    setTimeout(() => {
-                        carousel.style.transition = 'none'; // Pausar transición
-                        setTimeout(() => {
-                            carousel.style.transition = `transform ${transitionDuration}s ease-in-out`; // Reanudar transición
-                            scrollPosition += itemWidth;
-                            if (scrollPosition >= totalWidth / 2) {
-                                scrollPosition = 0;
-                            }
-                            carousel.style.transform = `translateX(-${scrollPosition}px)`;
-                        }, transitionDuration * 1000); // Esperar 5 segundos
-                    }, transitionDuration * 1000); // Tiempo de desplazamiento
-                }
-                scrollCarousel();
-                setInterval(scrollCarousel, (transitionDuration + 5) * 1000); // Intervalo total de tiempo (transición + pausa)
-            }, 1000); // Tiempo de espera para asegurar que los elementos se carguen
-
-            function expandToFullscreen(url) {
-                const fullscreen = window.open(url, '_blank');
-                fullscreen.moveTo(0, 0);
-                fullscreen.resizeTo(screen.availWidth, screen.availHeight);
-                fullscreen.focus();
-            }
+                }, 2000);
+            }, 2000);
 
             document.querySelectorAll('.video-banner').forEach(video => {
                 video.addEventListener('click', () => {
                     const url = video.getAttribute('data-url');
-                    expandToFullscreen(url);
+                    fullscreenIframe.src = url;
+                    fullscreen.style.display = 'flex';
                 });
             });
 
-            document.getElementById('contenido-link').addEventListener('mouseover', () => {
-                document.getElementById('contenido-dropdown').style.display = 'flex';
-            });
-
-            document.getElementById('contenido-link').addEventListener('mouseout', () => {
-                document.getElementById('contenido-dropdown').style.display = 'none';
+            closeFullscreen.addEventListener('click', () => {
+                fullscreen.style.display = 'none';
+                fullscreenIframe.src = '';
             });
         });
     </script>
 </body>
 </html>
+
