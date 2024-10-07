@@ -44,68 +44,34 @@
             display: flex;
             gap: 10px;
             margin-right: 2cm;
-            position: relative;
         }
         .nav a {
             color: white;
             text-decoration: none;
             font-size: 16px;
         }
-        .nav .dropdown {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            display: none;
-            flex-direction: column;
-            background-color: black;
-            border: 1px solid white;
-        }
-        .nav .dropdown a {
-            padding: 10px;
-        }
         .container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin: 150px auto;
-            max-width: 1200px;
-            opacity: 0;
-            transition: opacity 2s ease-in-out;
+            margin-top: 150px;
             padding-bottom: 100px;
+        }
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         .video-banner {
             position: relative;
-            cursor: pointer;
             overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 16 / 9;
         }
         .video-banner iframe {
             width: 100%;
-            height: 200px;
-            border: none;
-        }
-        .fullscreen-video {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 10000;
-        }
-        .fullscreen-video iframe {
-            width: 80%;
-            height: 80%;
-        }
-        .close-fullscreen {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
+            border: none;
         }
         footer {
             text-align: center;
@@ -117,10 +83,41 @@
             text-decoration: none;
             margin: 0 10px;
         }
+        @media (max-width: 768px) {
+            .header {
+                padding: 10px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .logo-title img {
+                height: 60px;
+            }
+            .logo-title h1 {
+                font-size: 20px;
+            }
+            .nav {
+                flex-direction: column;
+                margin-right: 0;
+                margin-top: 10px;
+            }
+            .nav a {
+                font-size: 14px;
+            }
+        }
+        @media (max-width: 480px) {
+            .logo-title img {
+                height: 50px;
+            }
+            .logo-title h1 {
+                font-size: 18px;
+            }
+            .nav a {
+                font-size: 12px;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="overlay"></div>
     <header class="header">
         <div class="logo-title">
             <img src="logo.png" alt="Logo de ORO PRODUCCIONES">
@@ -129,74 +126,64 @@
         <nav class="nav">
             <a href="#contacto">Contacto</a>
             <a href="#nosotros">Nosotros</a>
-            <a href="#contenido" id="contenido-link">Contenido</a>
+            <a href="#contenido">Contenido</a>
         </nav>
     </header>
-
     <div class="container" id="contenido">
-        <!-- Agregar nuevos videos aquí -->
-        <div class="video-banner" data-url="https://www.youtube.com/embed/a9frnKhmZz8">
-            <iframe src="https://www.youtube.com/embed/a9frnKhmZz8" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
-        <div class="video-banner" data-url="https://www.youtube.com/embed/i4MOwP7fLg8">
-            <iframe src="https://www.youtube.com/embed/i4MOwP7fLg8" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
-        
-        <!-- Videos existentes -->
-        <div class="video-banner" data-url="https://www.youtube.com/embed/1t0mWq8ZFcI">
-            <iframe src="https://www.youtube.com/embed/1t0mWq8ZFcI" title="MARIE CLAIRE - LOS DESAFIO DE LA SUSTENTABILIDAD" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
-        <div class="video-banner" data-url="https://www.youtube.com/embed/hORMqcsH9os">
-            <iframe src="https://www.youtube.com/embed/hORMqcsH9os" title="Entrevista Exclusiva con el Dr. Alfredo Angeloff: Innovaciones en Estética" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
-        <div class="video-banner" data-url="https://www.youtube.com/embed/RBIs37Gn8B0">
-            <iframe src="https://www.youtube.com/embed/RBIs37Gn8B0" title="Nuevo Video de ORO PRODUCCIONES" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <h2 style="text-align: center;">Contenido</h2>
+        <div class="video-grid">
+            <!-- Video 1 -->
+            <div class="video-banner" data-url="https://www.youtube.com/embed/a9frnKhmZz8">
+                <iframe src="https://www.youtube.com/embed/a9frnKhmZz8" title="Video 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <!-- Video 2 -->
+            <div class="video-banner" data-url="https://www.youtube.com/embed/i4MOwP7fLg8">
+                <iframe src="https://www.youtube.com/embed/i4MOwP7fLg8" title="Video 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <!-- Video 3 -->
+            <div class="video-banner" data-url="https://www.youtube.com/embed/1t0mWq8ZFcI">
+                <iframe src="https://www.youtube.com/embed/1t0mWq8ZFcI" title="MARIE CLAIRE - LOS DESAFIO DE LA SUSTENTABILIDAD" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <!-- Video 4 -->
+            <div class="video-banner" data-url="https://www.youtube.com/embed/hORMqcsH9os">
+                <iframe src="https://www.youtube.com/embed/hORMqcsH9os" title="Entrevista Exclusiva con el Dr. Alfredo Angeloff: Innovaciones en Estética" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <!-- Video 5 -->
+            <div class="video-banner" data-url="https://www.youtube.com/embed/RBIs37Gn8B0">
+                <iframe src="https://www.youtube.com/embed/RBIs37Gn8B0" title="Nuevo Video de ORO PRODUCCIONES" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
         </div>
     </div>
-
     <footer>
         <a href="https://www.facebook.com/berenguerpablo" target="_blank">Facebook</a>
         <a href="https://instagram.com/oro.producciones" target="_blank">Instagram</a>
         <a href="https://www.youtube.com/@oro.producciones.audiovisuales" target="_blank">YouTube</a>
     </footer>
-
-    <div class="fullscreen-video" id="fullscreen-video" style="display: none;">
-        <div class="close-fullscreen" id="close-fullscreen">✖</div>
-        <iframe id="fullscreen-iframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    </div>
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const container = document.querySelector('.container');
-            const overlay = document.querySelector('.overlay');
-            const header = document.querySelector('.header');
-            const fullscreen = document.getElementById('fullscreen-video');
-            const fullscreenIframe = document.getElementById('fullscreen-iframe');
-            const closeFullscreen = document.getElementById('close-fullscreen');
-
-            setTimeout(() => {
-                overlay.style.opacity = '0';
-                setTimeout(() => {
-                    overlay.style.display = 'none';
-                    header.style.opacity = '1';
-                    container.style.opacity = '1';
-                }, 2000);
-            }, 2000);
-
-            document.querySelectorAll('.video-banner').forEach(video => {
-                video.addEventListener('click', () => {
-                    const url = video.getAttribute('data-url');
-                    fullscreenIframe.src = url;
-                    fullscreen.style.display = 'flex';
+            const videoBanners = document.querySelectorAll('.video-banner');
+            
+            videoBanners.forEach(banner => {
+                banner.addEventListener('click', () => {
+                    const iframe = banner.querySelector('iframe');
+                    const url = iframe.getAttribute('src');
+                    const fullscreenUrl = url.replace("embed/", "watch?v=");
+                    
+                    // Cambiar la URL del iframe y forzar pantalla completa
+                    iframe.setAttribute('src', url + "?autoplay=1&fs=1");
+                    
+                    const requestFullScreen = iframe.requestFullscreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullscreen || iframe.msRequestFullscreen;
+                    if (requestFullScreen) {
+                        iframe.allowFullscreen = true;
+                        iframe.setAttribute('allowfullscreen', true);
+                        requestFullScreen.call(iframe);
+                    }
                 });
-            });
-
-            closeFullscreen.addEventListener('click', () => {
-                fullscreen.style.display = 'none';
-                fullscreenIframe.src = '';
             });
         });
     </script>
 </body>
+</html>
+
 </html>
 
