@@ -17,8 +17,8 @@
         }
         .header {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: space-between;
             padding: 20px;
             position: fixed;
             top: 0;
@@ -29,22 +29,21 @@
             transition: opacity 2s ease-in-out, transform 0.3s ease-in-out;
         }
         .logo-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            text-align: center;
         }
         .logo-title img {
             height: 80px;
         }
         .logo-title h1 {
             font-size: 24px;
-            margin: 0;
+            margin: 10px 0 0 0;
+            font-weight: normal; /* Se quita el negrita */
         }
         .nav {
             display: flex;
-            gap: 10px;
-            margin-right: 2cm;
-            position: relative;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
         }
         .nav a {
             color: white;
@@ -92,6 +91,11 @@
             .logo-title h1 {
                 font-size: 18px; /* Reducir tamaño del texto en móviles */
             }
+            .nav {
+                flex-direction: column;
+                align-items: center; /* Centrar enlaces en móviles */
+                gap: 10px;
+            }
         }
     </style>
 </head>
@@ -138,9 +142,4 @@
 </body>
 </html>
 
-
-
-
-
-</html>
 
